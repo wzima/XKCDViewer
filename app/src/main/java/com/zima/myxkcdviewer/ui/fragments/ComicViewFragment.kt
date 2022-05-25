@@ -60,6 +60,8 @@ open class ComicViewFragment : Fragment() {
 
         myTextToSpeechHelper = binding.comicView.myTextToSpeechHelper
 
+        binding.comicView.setClickListeners(parentFragmentManager)
+
         binding.comicView.setOnFavoriteToggleListener {
             comicViewModel.getCurrentComic().value?.let { myComic ->
                 comicViewModel.exists(myComic) { exists ->

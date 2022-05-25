@@ -37,7 +37,6 @@ class ComicNavigationViewFragment : ComicViewFragment() {
     ): View {
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
-        binding.comicView.setClickListeners(parentFragmentManager)
         binding.comicView.onRefreshClickedListener = object : ComicView.OnRefreshClickedListener {
             override fun onRefreshClicked() {
                 updateForId(ComicViewModel.ID_NOT_INITIALIZED)

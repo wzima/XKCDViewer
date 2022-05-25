@@ -44,7 +44,7 @@ class ComicViewModel @Inject constructor(val handle: SavedStateHandle, private v
 
         comicFromDAO?.let {
             comicRoomRepository.deleteComic(it)
-            it.moveImageToTempPath(context)
+            //it.moveImageToTempPath(context)
             comic.copyFrom(it)
         }
 

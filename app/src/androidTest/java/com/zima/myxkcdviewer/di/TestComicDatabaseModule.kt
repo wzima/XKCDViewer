@@ -1,4 +1,4 @@
-package com.zima.myxkcdviewer.data.di
+package com.zima.myxkcdviewer.di
 
 import android.content.Context
 import androidx.room.Database
@@ -24,7 +24,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object ComicDatabaseModule {
+object TestComicDatabaseModule {
     @Provides
     fun provideLogDao(database: AppDatabase): ComicDataDao {
         return database.comicDataDao()
@@ -33,11 +33,9 @@ object ComicDatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase {
-        return Room.databaseBuilder(
+        return Room.inMemoryDatabaseBuilder(
             appContext,
-            AppDatabase::class.java,
-            AppDatabase.DATABASE_NAME
-        ).fallbackToDestructiveMigration().build()
+            AppDatabase::class.java).fallbackToDestructiveMigration().build()
     }
 
     @Singleton

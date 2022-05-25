@@ -27,4 +27,8 @@ import com.zima.myxkcdviewer.data.models.Comic
 @Database(entities = [Comic::class], version = 6, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun comicDataDao(): ComicDataDao
+
+    companion object {
+        const val DATABASE_NAME = "comic_database"
+    }
 }
