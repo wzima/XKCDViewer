@@ -4,6 +4,7 @@ import android.R.attr.maxHeight
 import android.R.attr.maxWidth
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import android.widget.ImageView
 import com.android.volley.*
 import com.android.volley.toolbox.ImageRequest
@@ -32,7 +33,7 @@ class APIService(private val context: Context) {
 
             val jsonObjectRequestInitialize = JsonObjectRequest(
                 Request.Method.GET, urlBuilder(ComicViewModel.ID_NOT_INITIALIZED), null,
-                Response.Listener { jsonObject ->
+                { jsonObject ->
                     val comicGson = GsonReader.readFromJSON(jsonObject.toString())
 
                     comicGson?.let {
@@ -54,24 +55,22 @@ class APIService(private val context: Context) {
     //this is being called after successful initialization
     //first read the json and thereafter also get the image using the link in the json
 
-    fun fetchData(id: Int, readDataListener: ReadDataListener?, urlBuilder: (Int) -> String) {
+    private fun fetchData(id: Int, readDataListener: ReadDataListener?, urlBuilder: (Int) -> String) {
+        Log.d("fetchData", urlBuilder(id))
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, urlBuilder(id), null,
-            Response.Listener { jsonObject ->
+            { jsonObject ->
                 val comicGson = GsonReader.readFromJSON(jsonObject.toString())
                 comicGson?.let { comicGsonData ->
                     comicGsonData.imgURL.let { url ->
                         //now download the image of the comic
                         val imageRequest = ImageRequest(
-                            url, object : Response.Listener<Bitmap> {
-                                override fun onResponse(bitmap: Bitmap?) {
-                                    val comic = comicGsonData.copyToComicUsingBitmap(context, bitmap)
+                            url, { bitmap ->
+                                val comic = comicGsonData.copyToComicUsingBitmap(context, bitmap)
 
-                                    comic?.let {
-                                        readDataListener?.readingDataFinished(SuccessStatus.Success, it)
-                                    } ?: readDataListener?.readingDataFinished(SuccessStatus.NoImage, null)
-
-                                }
+                                comic?.let {
+                                    readDataListener?.readingDataFinished(SuccessStatus.Success, it)
+                                } ?: readDataListener?.readingDataFinished(SuccessStatus.NoImage, null)
                             }, maxWidth, maxHeight, ImageView.ScaleType.FIT_CENTER, Bitmap.Config.RGB_565, object : Response.ErrorListener {
                                 override fun onErrorResponse(error: VolleyError?) {
                                     when (error) {

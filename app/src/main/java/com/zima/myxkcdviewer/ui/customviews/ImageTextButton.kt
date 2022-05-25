@@ -59,7 +59,7 @@ class ImageTextButton : ConstraintLayout {
         drawableOn = a.getDrawable(R.styleable.ImageTextButton_drawableOn)
         drawableOff = a.getDrawable(R.styleable.ImageTextButton_drawableOff)
 
-        drawable?.let { binding.ib.setImageDrawable(it) } ?: binding.ib.setImageDrawable(drawableOn)
+        drawable?.let { binding.ib.setImageDrawable(it) } ?: binding.ib.setImageDrawable(drawableOff)
         binding.tvTitle.text = titleText
 
 

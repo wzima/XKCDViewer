@@ -11,15 +11,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ComicViewModel @Inject constructor(val handle: SavedStateHandle, private val comicRoomRepository: ComicRoomRepository) : ViewModel() {
-    // Using LiveData and caching what allWords returns has several benefits:
+    // Using LiveData and caching what allFavoriteComics returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
 
     //list of all comics in favorite database
-    val allFavoriteComics: LiveData<List<Comic>> = comicRoomRepository.allFavoriteComics.asLiveData()
+    val allFavoriteComics: LiveData<List<Comic>> = comicRoomRepository.getAllFavoriteComics().asLiveData()
 
-    //if the viewmodel is not initiwlized it will first determine the maxid using today's comic
+    //if the viewmodel is not initialized it will first determine the maxid using today's comic
     var isInitialized = false
 
     //id of the currently displayed comic
@@ -67,14 +67,4 @@ class ComicViewModel @Inject constructor(val handle: SavedStateHandle, private v
         const val ID_NOT_INITIALIZED = -1
     }
 }
-
-//class ComicViewModelFactory(private val comicRoomRepository: ComicRoomRepository) : ViewModelProvider.Factory {
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(ComicViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST")
-//            return ComicViewModel(comicRoomRepository) as T
-//        }
-//        throw IllegalArgumentException("Unknown ViewModel class")
-//    }
-
 

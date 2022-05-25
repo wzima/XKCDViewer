@@ -35,6 +35,7 @@ class ComicNavigationViewFragment : ComicViewFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
 
         binding.comicView.setClickListeners(parentFragmentManager)
         binding.comicView.onRefreshClickedListener = object : ComicView.OnRefreshClickedListener {
@@ -47,9 +48,9 @@ class ComicNavigationViewFragment : ComicViewFragment() {
         binding.swipeToRefresh.isEnabled = true
         binding.swipeToRefresh.setOnRefreshListener {
             updateForId(ComicViewModel.ID_NOT_INITIALIZED)
-            binding.swipeToRefresh.isRefreshing = false;
+            binding.swipeToRefresh.isRefreshing = false
         }
-        return binding.root
+        return view
     }
 
 
@@ -64,9 +65,9 @@ class ComicNavigationViewFragment : ComicViewFragment() {
         //set a listener on all comics in the database
         //this will toggle the favorite icon on or off
         comicViewModel.allFavoriteComics.observe(viewLifecycleOwner) {
-            comicViewModel.getCurrentComic().value?.let { it ->
-                comicViewModel.exists(it) {
-                    binding.comicView.isFavorite = it
+            comicViewModel.getCurrentComic().value?.let { comic ->
+                comicViewModel.exists(comic) { exists ->
+                    binding.comicView.isFavorite = exists
                 }
             }
         }

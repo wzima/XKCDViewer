@@ -1,24 +1,16 @@
 package com.zima.myxkcdviewer.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.zima.myxkcdviewer.R
-import com.zima.myxkcdviewer.data.logic.utils.ApiRequests
-import com.zima.myxkcdviewer.data.logic.utils.ComicURLBuilder
 import com.zima.myxkcdviewer.databinding.ActivityMainBinding
 import com.zima.myxkcdviewer.ui.fragments.TipOfTheDayDialogFragment
 import com.zima.myxkcdviewer.ui.utils.MySnackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.awaitResponse
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.coroutines.*
 
 /**
 
@@ -40,7 +32,7 @@ There are three fragments. Navigation between the fragments is controlled by the
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CoroutineScope by MainScope()  {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -64,28 +56,28 @@ class MainActivity : AppCompatActivity() {
             this, TipOfTheDayDialogFragment.INTRO_TIP
         )
 
-        getCurrentData()
+        //getCurrentData()
     }
 
-    fun getCurrentData() {
-        val api = Retrofit.Builder()
-            .baseUrl(ComicURLBuilder.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiRequests::class.java)
-
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val response=api.getTodaysComic().awaitResponse()
-                if (response.isSuccessful) {
-                    val data = response.body()!!
-                    Log.d("Retrofit",data.toString())
-                }
-            } catch (e: Throwable) {
-                Log.d("HttpException",e.toString())
-            }
-        }
-    }
+//    fun getCurrentData() {
+//        val api = Retrofit.Builder()
+//            .baseUrl(ComicURLBuilder.BASE_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//            .create(ApiRequests::class.java)
+//
+//        launch(Dispatchers.IO) {
+//            try {
+//                val response=api.getTodaysComic().awaitResponse()
+//                if (response.isSuccessful) {
+//                    val data = response.body()!!
+//                    Log.d("Retrofit",data.toString())
+//                }
+//            } catch (e: Throwable) {
+//                Log.d("HttpException",e.toString())
+//            }
+//        }
+//    }
 
     //implement exit on double-tap on back button. this can prevent accidental exiting of the app.
     private var exitMillis: Long = 0

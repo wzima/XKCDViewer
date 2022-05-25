@@ -40,4 +40,9 @@ data class ComicGsonData(
         }
     }
 
+    fun copyToComicUsingUri(uri: String): Comic {
+        return Comic(month, id, year, news, safeTitle, transcript, altText, title, day, uri)
+
+    }
+
 }
