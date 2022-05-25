@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/comicViewFragment">
+
+    <fragment
+        android:id="@+id/comicViewFragment"
+        android:name="com.zima.myxkcdviewer.ui.fragments.ComicNavigationViewFragment"
+        android:label="@string/xkcd"
+        tools:layout="@layout/fragment_comic_view">
+        <action
+            android:id="@+id/action_comicViewFragment_to_favoriteComicFragment"
+            app:destination="@id/favoriteComicListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteComicListFragment"
+        android:name="com.zima.myxkcdviewer.ui.fragments.FavoriteComicListFragment"
+        android:label="@string/Favorites"
+        tools:layout="@layout/fragment_favorite_comic_list">
+        <action
+            android:id="@+id/action_favoriteComicListFragment_to_favoriteComicViewFragment"
+            app:destination="@id/favoriteComicViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteComicViewFragment"
+        android:name="com.zima.myxkcdviewer.ui.fragments.ComicViewFragment"
+        android:label="ComicViewFragment">
+        <argument
+            android:name="ARG_COMIC_DATA"
+            app:argType="com.zima.myxkcdviewer.data.models.Comic" />
+    </fragment>
+</navigation>

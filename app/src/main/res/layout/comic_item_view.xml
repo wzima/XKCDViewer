@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="comic"
+            type="com.zima.myxkcdviewer.data.models.Comic" />
+
+        <variable
+            name="listener"
+            type="com.zima.myxkcdviewer.interfaces.ComicListClickListener" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/border"
+        android:gravity="center_vertical"
+        android:onClick="@{() -> listener.onSelect(comic)}">
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            android:text="@{comic.idAsString()}"
+            android:textAppearance="?attr/textAppearanceCaption" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvId"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_toStartOf="@id/ivComic"
+            android:text="@{comic.niceDate()}"
+            android:textAppearance="?attr/textAppearanceCaption" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDate"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:layout_toStartOf="@id/ivComic"
+            android:maxLines="2"
+            android:text="@{comic.title}"
+            android:textAppearance="?attr/textAppearanceHeadline6" />
+
+
+        <ImageButton
+            android:id="@+id/ibRemove"
+            style="@style/DefaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="TODO"
+            android:onClick="@{() -> listener.onRemove(comic)}"
+            android:src="@drawable/ic_action_close" />
+
+        <ImageView
+            android:id="@+id/ivComic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="4dp"
+            android:layout_toLeftOf="@id/ibRemove"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop" />
+
+
+    </RelativeLayout>
+</layout>

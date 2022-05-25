@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="ImageTextButton">
+        <attr name="titleText" format="string" />
+        <attr name="drawable" format="color|reference" />
+        <attr name="drawableOn" format="color|reference" />
+        <attr name="drawableOff" format="color|reference" />
+    </declare-styleable>
+</resources>

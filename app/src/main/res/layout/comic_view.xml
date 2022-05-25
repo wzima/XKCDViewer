@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/ivComic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:scaleType="fitCenter"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/toolsView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/ivComic"
+        app:layout_constraintLeft_toLeftOf="@id/ivComic"
+        app:layout_constraintRight_toRightOf="@id/ivComic"
+        app:layout_constraintTop_toTopOf="@id/ivComic" />
+
+    <com.zima.myxkcdviewer.ui.customviews.ImageTextButton
+        android:id="@+id/itbRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:drawable="@drawable/ic_action_refresh"
+        app:layout_constraintBottom_toBottomOf="@id/ivComic"
+        app:layout_constraintLeft_toLeftOf="@id/ivComic"
+        app:layout_constraintRight_toRightOf="@id/ivComic"
+        app:layout_constraintTop_toTopOf="@id/ivComic"
+        app:titleText="@string/Reload" />
+
+    <com.zima.myxkcdviewer.ui.customviews.ToolsView
+        android:id="@+id/toolsView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

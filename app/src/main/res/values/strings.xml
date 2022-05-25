@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">xkcd</string>
+    <string name="loading">Lade Comic…</string>
+    <string name="failure">Fehler beim Laden</string>
+    <string name="xkcd">xkcd</string>
+    <string name="back">Zurück</string>
+    <string name="previous">Zurück</string>
+    <string name="next">Vorwärts</string>
+    <string name="today">Heute</string>
+    <string name="random">Zufällig</string>
+    <string name="DontShowThisAgain">Diesen Tip nicht mehr anzeigen.</string>
+    <string name="Close">Schließen</string>
+    <string name="Info">Kleiner Tip</string>
+    <string name="ImageZoomTip">Du kannst den Comic vergrößern indem Du darauf doppelt tippst. Durch langes Drücken erscheint die alternative Beschreibung. Viel Spass!</string>
+    <string name="FullscreenExit">Minimieren</string>
+    <string name="Success">Download erfolgreich</string>
+    <string name="UnknownError">Unbekannter Fehler beim Laden</string>
+    <string name="NoConnection">Keine Verbindung zum Internet</string>
+    <string name="UnknownComicId">Comic existiert nicht</string>
+    <string name="NoImage">Kein Bild vorhanden.</string>
+    <string name="SavedInGallery">Comic wurde in deiner Fotogalerie gespeichert.</string>
+    <string name="SaveError">Comic konnte leider nicht in der Fotogalerie gespeichert werden.</string>
+    <string name="PressBackOnceMoreToExit">Zum Beenden nochmals drücken.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="AddToFavorites">Zu Favoriten</string>
+    <string name="ReadLoud">Vorlesen</string>
+    <string name="Save">Speichern</string>
+    <string name="Maximize">Maximieren</string>
+    <string name="Minimize">Minimieren</string>
+    <string name="Favorites">Favoriten</string>
+    <string name="FavoriteList">Favoriten</string>
+    <string name="NoFavorites">Sie haben noch keine Favoriten ausgewählt.</string>
+    <string name="JsonReadError">Comic kann leider nicht gelesen werden.</string>
+    <string name="IntroHelpTitle">Willkommen…</string>
+    <string name="IntroHelp">Diese App zeigt Dir die bekannten xkcd-Comics von Randall Munroe für einen beliebigen Tag an. Du kannst Comics als Favoriten markieren, in Deiner Galerie speichern und für manche Comics gibt\'s auch eine Audio-Beschreibung. Viel Spass!</string>
+    <string name="Reload">Neu laden…</string>
+    <string name="xkcdID">xkcd %1$d</string>
+
+</resources>
